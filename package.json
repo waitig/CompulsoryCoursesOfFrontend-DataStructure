@@ -1,0 +1,45 @@
+{
+  "name": "javascript-data-structures",
+  "version": "0.0.4",
+  "description": "Data-structures implemented on JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./src/* --ext .ts",
+    "test": "jest",
+    "ci": "npm run lint && npm run test -- --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waitig/CompulsoryCoursesOfFrontend-DataStructure.git"
+  },
+  "keywords": [
+    "algorithms",
+    "data-structures",
+    "javascript",
+    "algorithm",
+    "javascript-algorithms"
+  ],
+  "author": "lius(https://www.linuxdaxue.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/waitig/CompulsoryCoursesOfFrontend-DataStructure/issues"
+  },
+  "homepage": "https://github.com/waitig/CompulsoryCoursesOfFrontend-DataStructure/",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@types/jest": "^24.0.15",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.7.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.14.2",
+    "jest": "^24.8.0",
+    "typescript": "^3.7.3",
+    "@typescript-eslint/parser": "^2.10.0",
+    "@typescript-eslint/eslint-plugin": "^2.10.0"
+
+  },
+  "dependencies": {}
+}
