@@ -11,35 +11,14 @@
 //
 // 更快的访问，如随机访问，是不可行的。与链表相比，数组具有更好的缓存位置.
 
-import Comparator from "./utils/Comparator";
-
-/**
- * 链表结点的定义
- */
-class LinkedListNode<T> {
-    public readonly value: T;
-    public next: LinkedListNode<T>;
-
-    constructor(value, next = null) {
-        this.value = value;
-        this.next = next;
-    }
-
-    /**
-     * 转化为String方法，支持传入自定义方法
-     * @param callback
-     */
-    toString(callback: Function): string {
-        return callback ? callback(this.value) : `${this.value}`
-    }
-}
-
+import Comparator from "../utils/Comparator";
+import LinkedListNode from "./linked-list-node";
 /**
  * 单向链表
  */
 export default class LinkedList<T> {
-    private head: LinkedListNode<T>;
-    private tail: LinkedListNode<T>;
+    public head: LinkedListNode<T>;
+    public tail: LinkedListNode<T>;
     private readonly compare: Comparator;
 
     constructor(compareFunction?: Function) {
