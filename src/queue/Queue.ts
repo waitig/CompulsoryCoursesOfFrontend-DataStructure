@@ -8,8 +8,8 @@
 
  本实例利用链表来实现队列
  **/
-import LinkedList from "../linked-list/linked-list";
-import LinkedListNode from "../linked-list/linked-list-node"
+import LinkedList from "../linked-list/LinkedList";
+import LinkedListNode from "../linked-list/LinkedListNode"
 export default class Queue<T> {
     private linkedList: LinkedList<T> = null;
     constructor() {

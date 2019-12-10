@@ -39,7 +39,6 @@
     "typescript": "^3.7.3",
     "@typescript-eslint/parser": "^2.10.0",
     "@typescript-eslint/eslint-plugin": "^2.10.0"
-
   },
   "dependencies": {}
 }
