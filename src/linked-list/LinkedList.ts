@@ -222,8 +222,8 @@ export default class LinkedList<T> {
             nextNode = currentNode.next;
 
             currentNode.next = prevNode;  // 当前结点的next 指向上个结点
-            prevNode = currentNode;    // prevNode更新为当前结点，供下次循环使用
 
+            prevNode = currentNode;    // prevNode更新为当前结点，供下次循环使用
             currentNode = nextNode
         }
         this.tail = this.head;
