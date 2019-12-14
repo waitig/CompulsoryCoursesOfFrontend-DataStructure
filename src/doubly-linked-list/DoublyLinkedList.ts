@@ -17,7 +17,7 @@ export default class DoublyLinkedList<T> {
     public head: DoublyLinkedListNode<T>;
     public tail: DoublyLinkedListNode<T>;
     private compare: Comparator;
-    constructor(compareFunction: Function) {
+    constructor(compareFunction?: Function) {
         this.head = null;
         this.tail = null;
         this.compare = new Comparator(compareFunction);
@@ -83,12 +83,13 @@ export default class DoublyLinkedList<T> {
                 deletedNode = currentNode;
                 // 如果头结点要删除
                 if(deletedNode === this.head) {
-                    if(currentNode.next) {
+                    if(this.head === this.tail) {
+                        this.head = null
+                        this.tail = null
+                    }
+                    else {
                         this.head = currentNode.next;
                         this.head.previous = null;
-                    } else {
-                        this.head = null;
-                        this.tail = null;
                     }
                 }
                 // 尾结点需要删除
@@ -114,4 +115,129 @@ export default class DoublyLinkedList<T> {
         return deletedNode;
     }
 
+    /**
+     * 删除头结点
+     */
+    public deleteHead(): DoublyLinkedListNode<T> {
+        if(!this.head) {
+            return null;
+        }
+        const headNode = this.head
+        if(this.head === this.tail) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = headNode.next;
+            this.head.previous = null;
+        }
+        return headNode;
+    }
+
+    /**
+     * 删除链表的尾结点
+     */
+    public deleteTail(): DoublyLinkedListNode<T> {
+        if(!this.head) {
+            return null;
+        }
+        const tailNode = this.tail
+        if(this.head === this.tail) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = tailNode.previous;
+            this.tail.next = null;
+        }
+    }
+
+    /**
+     * 从链表中查找元素
+     * @param value
+     * @param callback
+     */
+    public find(value: T,callback: Function): DoublyLinkedListNode<T> {
+        if(!this.head) {
+            return null;
+        }
+        if(value === undefined || value === null) {
+            return null;
+        }
+        let currentNode: DoublyLinkedListNode<T> = this.head;
+        while(currentNode) {
+            if(callback && callback(currentNode.value,value)) {
+                return currentNode;
+            }
+            if(value && currentNode.value === value) {
+                return currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+        return null;
+    }
+
+    /**
+     * 将链表转化为数组
+     */
+    toArray(): Array<DoublyLinkedListNode<T>> {
+        const nodeArray: Array<DoublyLinkedListNode<T>> = new Array<DoublyLinkedListNode<T>>();
+        let currentNode = this.head;
+        while(currentNode) {
+            nodeArray.push(currentNode)
+            currentNode = currentNode.next;
+        }
+        return nodeArray;
+    }
+
+    /**
+     * 从数组中初始化链表
+     * @param nodeArray
+     */
+    fromArray(nodeArray: Array<T>): DoublyLinkedList<T> {
+        const doublyLinkedList: DoublyLinkedList<T> = new DoublyLinkedList<T>();
+        nodeArray.forEach(item=> {
+            doublyLinkedList.append(item);
+        })
+        return doublyLinkedList;
+    }
+
+    /**
+     * toString 方法
+     * @param callback
+     */
+    toString(callback: Function): string {
+        return this.toArray().map(item=>{
+            item.toString(callback)
+        }).toString()
+    }
+
+    /**
+     * 将双向链表转置
+     */
+    public reverse(): DoublyLinkedList<T> {
+        let currentNode = this.head;
+        let previousNode = null;
+        let nextNode = null;
+
+        // 对元素逐一进行处理
+        while(currentNode) {
+            // 两个临时元素记录previous 和 next 结点情况
+            previousNode = currentNode.previous;
+            nextNode = currentNode.next;
+
+            // 将当前元素的前后元素进行交换
+            currentNode.previous = nextNode;
+            currentNode.next = previousNode;
+
+            // 记录当前元素
+            previousNode = currentNode;
+
+            // 处理下一个元素
+            currentNode = nextNode;
+        }
+
+        this.head = previousNode;
+        this.tail = this.head;
+
+        return this;
+    }
 }
