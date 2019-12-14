@@ -4,15 +4,15 @@
  */
 export default class DoublyLinkedListNode<T> {
     public value: T;
-    public next: T;
-    public previous: T;
-    constructor(value, next = null, previous = null) {
+    public next: DoublyLinkedListNode<T>;
+    public previous: DoublyLinkedListNode<T>;
+    constructor(value: T, next: DoublyLinkedListNode<T> = null, previous: DoublyLinkedListNode<T> = null) {
         this.value = value;
         this.next = next;
         this.previous = previous;
     }
 
-    toString(callback: Function) {
+    toString(callback: Function): string {
         return callback ? callback(this.value) : `${this.value}`;
     }
 }
